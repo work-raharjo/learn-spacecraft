@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Stars, Grid, Environment } from "@react-three/drei";
+import { OrbitControls, Stars, Grid } from "@react-three/drei";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
 import SatelliteModel from "./SatelliteModel";
@@ -162,8 +162,8 @@ export default function SpacecraftViewer({
             missionEffects={missionEffects}
           />
 
-          {/* Environment for reflections */}
-          <Environment preset="night" />
+          {/* Subtle fill light for reflections */}
+          <hemisphereLight args={["#E8F0FF", "#FFF8E0", 0.4]} />
         </Suspense>
       </Canvas>
 
