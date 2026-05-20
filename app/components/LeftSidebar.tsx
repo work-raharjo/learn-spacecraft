@@ -137,7 +137,7 @@ export default function LeftSidebar({ activeItem, onNavigate, collapsed, onToggl
                 System Nominal
               </p>
               <p className="label-caps" style={{ fontSize: "0.55rem" }}>
-                GEO orbit · 105.5°E
+                GEO orbit · 150.5°E
               </p>
             </div>
           </motion.div>

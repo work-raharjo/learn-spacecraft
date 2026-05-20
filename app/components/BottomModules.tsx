@@ -25,7 +25,7 @@ type TabId = typeof TABS[number]["id"];
 
 export default function BottomModules({ scenario, onScenarioChange, rfPower }: Props) {
   const [activeTab, setActiveTab] = useState<TabId>("telemetry");
-  const [longitude, setLongitude] = useState(105.5);
+  const [longitude, setLongitude] = useState(150.5);
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (

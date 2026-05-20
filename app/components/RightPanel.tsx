@@ -463,10 +463,10 @@ function WelcomeState({ messages }: { messages: string[] }) {
       >
         <div className="text-3xl mb-3">🛰️</div>
         <p className="font-semibold mb-1" style={{ color: "#1A1915", fontSize: "0.9rem" }}>
-          GEO Communications Satellite
+          BRISat-1 — Bank Rakyat Indonesia
         </p>
         <p className="label-caps" style={{ fontSize: "0.57rem" }}>
-          GEOSTATIONARY · 35,786 KM · 105.5°E
+          SSL-1300 · GEOSTATIONARY · 35,786 KM · 150.5°E
         </p>
       </div>
       {messages.map((msg, i) => (
@@ -483,10 +483,10 @@ function WelcomeState({ messages }: { messages: string[] }) {
 
       <div className="mt-4 grid grid-cols-2 gap-2">
         {[
-          { icon: "📡", label: "Ku-band Payload", sub: "36 MHz × 24 transponders" },
-          { icon: "⚡", label: "Power System", sub: "18 kW solar BOL" },
-          { icon: "🎯", label: "ADCS", sub: "< 0.05° pointing" },
-          { icon: "🌡️", label: "Thermal", sub: "–20 to +70°C ops" },
+          { icon: "📡", label: "C+Ku Payload", sub: "27 C-band + 18 Ku-band" },
+          { icon: "⚡", label: "Power System", sub: "~14 kW BOL · 100V bus" },
+          { icon: "🎯", label: "ADCS", sub: "0.05° 3-axis stabilised" },
+          { icon: "🌍", label: "Coverage", sub: "Indonesia · ASEAN · Pacific" },
         ].map((item, i) => (
           <motion.div
             key={i}
@@ -519,8 +519,8 @@ function generateAIResponse(question: string, subsystem: SubsystemKey | null): s
   if (q.includes("orbit") || q.includes("geo") || q.includes("altitude"))
     return "GEO orbit is at 35,786 km altitude — chosen because the orbital period exactly matches Earth's rotation (23h 56m 4s sidereal day). This keeps the satellite stationary relative to the ground, enabling fixed antennas for users. The trade-off is 240-280ms signal latency.";
 
-  if (q.includes("frequency") || q.includes("ku") || q.includes("ka") || q.includes("band"))
-    return "Ku-band (12-18 GHz) is the workhorse for direct-to-home TV and VSAT services. Ka-band (26.5-40 GHz) enables higher throughput HTS services but suffers more from rain attenuation. In tropical regions like Indonesia and Brazil, Ka-band links must have 3-8 dB of rain fade margin built in.";
+  if (q.includes("frequency") || q.includes("ku") || q.includes("ka") || q.includes("c-band") || q.includes("band"))
+    return "BRISat-1 uses both C-band (uplink 5.925–6.425 GHz, downlink 3.625–4.2 GHz) and Ku-band (uplink 14.0–14.5 GHz, downlink 10.95–12.75 GHz). C-band is the primary workhorse for Indonesia because its lower frequency suffers far less rain attenuation in tropical downpours — typically only 0.5–1 dB vs 5–15 dB for Ku-band in heavy convective rainfall events.";
 
   if (q.includes("temperature") || q.includes("thermal") || q.includes("heat"))
     return "Spacecraft thermal management is challenging because space has no convection — only radiation and conduction. The satellite's north and south panels face deep space (4K) and act as radiators. MLI blankets trap internal heat, while heat pipes move thermal loads from hot electronics to the radiators.";

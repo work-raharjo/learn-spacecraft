@@ -185,7 +185,7 @@ export default function TelemetryPanel({ scenario }: Props) {
     s === "critical" ? "#D95C5C" : s === "warning" ? "#E8943A" : "#3BA97B";
 
   const battStatus = getStatus(telem.battery, 70, 40);
-  const powerStatus = getStatus(telem.busVoltage, 49.0, 47.5);
+  const powerStatus = getStatus(telem.busVoltage, 98.5, 96.0);
   const rfStatus = getStatus(telem.rfPower, 75, 50);
 
   return (
@@ -223,7 +223,7 @@ export default function TelemetryPanel({ scenario }: Props) {
             <span style={{ fontSize: "0.7rem", color: "#9E9D97", marginBottom: 4 }}>V</span>
           </div>
           <TrendSparkline history={historyRef.current.busVoltage || []} color={statusColor(powerStatus)} />
-          <p style={{ fontSize: "0.62rem", color: "#9E9D97", marginTop: 2 }}>Nominal: 50.2V</p>
+          <p style={{ fontSize: "0.62rem", color: "#9E9D97", marginTop: 2 }}>Nominal: 100.0V</p>
         </div>
 
         <div className="glass-panel rounded-xl p-3">
@@ -366,9 +366,9 @@ function LiveLog({ scenario }: { scenario: MissionScenario }) {
   ];
   const SCENARIO_LOGS: Record<string, string[]> = {
     eclipse: ["Eclipse ingress", "Battery mode", "Solar power: 0W", "Depth of discharge ↑"],
-    solar_storm: ["Solar flux ↑↑", "SEU detected", "Mem scrub run", "Radiation alert"],
+    tropical_rain: ["C-band fade: 0.8 dB", "Ku margin warn", "C-band link stable", "Rain event: 85mm/h"],
     antenna_misalign: ["APM fault B3", "Beam 3 off-axis", "EIRP reduced", "SVC degraded"],
-    battery_degradation: ["Batt cap: 65%", "Eclipse power critical", "Load shedding active"],
+    battery_eol: ["Batt cap: 72%", "Eclipse DoD ↑", "Load shedding active", "EOL budget tight"],
     momentum_saturation: ["Wheel 2: 5800 RPM", "Desat burn -2min", "RCS fire imminent"],
   };
 

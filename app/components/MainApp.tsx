@@ -71,7 +71,7 @@ export default function MainApp() {
                 <span style={{ color: "#2C2B26" }}>Spacecraft Architecture Studio</span>
               </h1>
               <p className="label-caps" style={{ fontSize: "0.57rem" }}>
-                GEO HTS · 105.5°E · 35,786 km altitude
+                BRISat-1 · SSL-1300 Bus · 150.5°E · 35,786 km
               </p>
             </div>
           </div>

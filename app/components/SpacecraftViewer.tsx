@@ -403,7 +403,7 @@ export default function SpacecraftViewer({
         }}
       >
         <p style={{ fontSize: "0.62rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.12em", textTransform: "uppercase" }}>
-          GEO HTS Communications Satellite · 105.5°E
+          BRISat-1 — Bank Rakyat Indonesia · 150.5°E
         </p>
       </div>
     </div>

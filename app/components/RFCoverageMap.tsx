@@ -34,12 +34,12 @@ export default function RFCoverageMap({ longitude, rfPower, scenario }: Props) {
   const [showGridlines, setShowGridlines] = useState(true);
   const [selectedBeam, setSelectedBeam] = useState(0);
 
-  // Beam coverage zones centered on different coverage areas
+  // Beam coverage zones for BRISat-1 at 150.5°E
   const BEAMS = [
-    { id: 0, name: "Indonesia HTS", cx: 355, cy: 125, rx: 55, ry: 35, color: "#C8A44A" },
-    { id: 1, name: "SE Asia Wide", cx: 330, cy: 110, rx: 80, ry: 55, color: "#3A78C9" },
-    { id: 2, name: "India Spot", cx: 300, cy: 95, rx: 38, ry: 28, color: "#10B981" },
-    { id: 3, name: "Pacific Steerable", cx: 400, cy: 100, rx: 60, ry: 45, color: "#A78BFA" },
+    { id: 0, name: "C-band Indonesia/ASEAN", cx: 355, cy: 118, rx: 90, ry: 52, color: "#C8A44A" },
+    { id: 1, name: "C-band NE Asia/Pacific", cx: 398, cy: 78, rx: 68, ry: 44, color: "#3A78C9" },
+    { id: 2, name: "Ku-band Indonesia Spot", cx: 352, cy: 125, rx: 46, ry: 28, color: "#10B981" },
+    { id: 3, name: "C-band Australia Wide", cx: 375, cy: 172, rx: 52, ry: 36, color: "#A78BFA" },
   ];
 
   useEffect(() => {
@@ -123,7 +123,7 @@ export default function RFCoverageMap({ longitude, rfPower, scenario }: Props) {
       ctx.fillText(`SAT ${longitude}°E`, satX + 6, 14);
 
       // Rain attenuation overlay (tropical regions)
-      if (showRain && scenario === "solar_storm") {
+      if (showRain && scenario === "tropical_rain") {
         const rainGrad = ctx.createRadialGradient(355, 125, 0, 355, 125, 80);
         rainGrad.addColorStop(0, "rgba(58,120,201,0.35)");
         rainGrad.addColorStop(0.5, "rgba(58,120,201,0.15)");
@@ -269,11 +269,11 @@ export default function RFCoverageMap({ longitude, rfPower, scenario }: Props) {
           <p className="label-caps mb-2">Link Budget</p>
           <div className="space-y-2">
             {[
-              { label: "EIRP", value: `${(52 + (rfPower - 100) * 0.15).toFixed(1)} dBW`, color: "#C8A44A" },
-              { label: "Path Loss", value: "205.8 dB", color: "#9E9D97" },
-              { label: "G/T (Rx)", value: "5.2 dB/K", color: "#3A78C9" },
-              { label: "Rain Margin", value: scenario === "solar_storm" ? "0.8 dB ⚠" : "3.2 dB", color: scenario === "solar_storm" ? "#E8943A" : "#3BA97B" },
-              { label: "C/N₀", value: `${(76 + (rfPower - 100) * 0.2).toFixed(1)} dBHz`, color: "#10B981" },
+              { label: "EIRP (C-band)", value: `${(50 + (rfPower - 100) * 0.15).toFixed(1)} dBW`, color: "#C8A44A" },
+              { label: "Path Loss", value: "195.6 dB", color: "#9E9D97" },
+              { label: "G/T (Rx)", value: "4.8 dB/K", color: "#3A78C9" },
+              { label: "Rain Margin", value: scenario === "tropical_rain" ? "0.6 dB ⚠" : "3.5 dB", color: scenario === "tropical_rain" ? "#E8943A" : "#3BA97B" },
+              { label: "C/N₀", value: `${(74 + (rfPower - 100) * 0.2).toFixed(1)} dBHz`, color: "#10B981" },
             ].map((item, i) => (
               <div key={i} className="flex justify-between items-center">
                 <span style={{ fontSize: "0.65rem", color: "#9E9D97" }}>{item.label}</span>
@@ -302,9 +302,10 @@ export default function RFCoverageMap({ longitude, rfPower, scenario }: Props) {
         <div className="glass-panel rounded-xl p-3">
           <p className="label-caps mb-2">Frequency Plan</p>
           {[
-            { dir: "↑ Uplink", freq: "14.0–14.5 GHz", color: "#3A78C9" },
-            { dir: "↓ Downlink", freq: "10.7–12.75 GHz", color: "#C8A44A" },
-            { dir: "Polarization", freq: "RHCP / LHCP", color: "#10B981" },
+            { dir: "C↑ Uplink", freq: "5.925–6.425 GHz", color: "#C8A44A" },
+            { dir: "C↓ Downlink", freq: "3.625–4.200 GHz", color: "#E8943A" },
+            { dir: "Ku↑ Uplink", freq: "14.0–14.5 GHz", color: "#3A78C9" },
+            { dir: "Ku↓ Downlink", freq: "10.95–12.75 GHz", color: "#10B981" },
           ].map((f, i) => (
             <div key={i} className="flex flex-col mb-2">
               <span style={{ fontSize: "0.6rem", color: f.color, fontWeight: 600 }}>{f.dir}</span>
